@@ -1,0 +1,19 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
+}
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: normal;
+  color: #c4c5c5;
+  margin: 0 2rem 60px 2rem;
+}
+.signinContainer {
+  margin-top: 22px;
+}
+.inviteLink {
+  color: #0077ff;
+}

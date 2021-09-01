@@ -1,11 +1,14 @@
 .card {
   width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   max-width: 90%;
   min-height: 300px;
   background-color: #1d1d1d;
   padding: 35px;
   border-radius: 25px;
-  text-align: center;
 }
 .headingContainer {
   margin-bottom: 30px;

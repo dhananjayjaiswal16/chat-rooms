@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Phone from './Phone/Phone'
+import Email from './Email/Email'
+
 import styles from './PhoneOrEmail.module.css';
 
+
+const loginMode = {
+    phone: Phone,
+    email: Email
+}
 const PhoneOrEmail = ({ onClick }) => {
+    const [mode, setMode] = useState('phone');
+    const CurrentMode = loginMode[mode]; //Get current component
+
     return (
-        <div>
-            <h1>PhoneOrEmail Component</h1>
-            <button onClick={onClick} >Next</button>
-        </div>
+        <>
+            <div className={styles.cardContainer}>
+                <div>
+                    <div className={styles.buttonContainer}>
+                        <button className={`${styles.iconButton} ${mode === 'phone' ? styles.current : ''}`} onClick={() => setMode('phone')}>
+                            <i class="fas fa-mobile-alt"></i>
+                        </button>
+                        <button className={`${styles.iconButton} ${mode === 'email' ? styles.current : ''}`} onClick={() => setMode('email')}>
+                            <i class="far fa-envelope"></i>
+                        </button>
+                    </div>
+                    <CurrentMode onClick={onClick} />
+                </div>
+
+            </div>
+
+
+        </>
     )
 }
 

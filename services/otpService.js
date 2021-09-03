@@ -1,25 +1,30 @@
+require('dotenv').config();
 const crypto = require('crypto');
+const hashService = require('./hashService');
 
-const smsSid = process.env.smsSid;
-const smsAuthToken = process.env.smsAuthToken;
-const twilio = require('twilio')(smsSid, smsAuthToken, {
-    lazyLoading: true
-})
+const smsSid = process.env.SMS_SID;
+const smsAuthToken = process.env.SMS_AUTH_TOKEN;
+const twilio = require('twilio')(smsSid, smsAuthToken);
+
+
 const generateOtp = async () => {
     const otp = crypto.randomInt(1000, 9999);
     return (otp);
 }
 
 
-
-const sendBySms = () => {
-
+const sendBySms = async (phone, otp) => {
+    return await twilio.messages.create({
+        to: phone,
+        from: process.env.SMS_PHONE_NO,
+        body: `Chat House OTP is ${otp}`
+    })
 }
 
 
-
-const verifyOtp = () => {
-
+const verifyOtp = (hashOtp, data) => {
+    var computedHash = hashService(data);
+    return (computedHash === hashOtp);
 }
 
 

@@ -22,8 +22,8 @@ const sendBySms = async (phone, otp) => {
 }
 
 
-const verifyOtp = (hashOtp, data) => {
-    var computedHash = hashService(data);
+const verifyOtp = async (hashOtp, data) => {
+    var computedHash = await hashService.hashOtp(data);
     return (computedHash === hashOtp);
 }
 

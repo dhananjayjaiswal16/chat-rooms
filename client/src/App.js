@@ -11,10 +11,14 @@ import Auth from './components/pages/Auth/Auth';
 import Activate from './components/pages/Activate/Activate';
 import Rooms from './components/pages/Rooms/Rooms';
 
-let isAuth = false;
-let user = {
-  activated: false
-}
+// import {useSelector} from 'react-redux';
+// import {} from './store/authSlice';
+
+
+// let isAuth = false;
+// let user = {
+//   activated: false
+// }
 
 const App = () => {
   return (
@@ -23,18 +27,18 @@ const App = () => {
       <Switch>
 
         {/* Guest Routes (Home and Auth) */}
-        <GuestRoute exact path='/' isAuth={isAuth} ><Home /></GuestRoute>
+        <GuestRoute exact path='/' ><Home /></GuestRoute>
         <GuestRoute path='/auth'>
           <Auth />
         </GuestRoute>
 
         {/* Semi Protected Routes (Name and profile pic) */}
-        <SemiProtectedRoute path='/activate' isAuth={isAuth} user={user}>
+        <SemiProtectedRoute path='/activate' >
           <Activate />
         </SemiProtectedRoute>
 
         {/* Protected routes (Chat Rooms) */}
-        <ProtectedRoute path='/rooms' isAuth={isAuth} user={user}>
+        <ProtectedRoute path='/rooms' >
           <Rooms />
         </ProtectedRoute>
 

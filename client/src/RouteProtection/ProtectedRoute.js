@@ -1,7 +1,9 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
-const ProtectedRoute = ({ children, isAuth, user, ...rest }) => {
+const ProtectedRoute = ({ children, ...rest }) => {
+    const { isAuth, user } = useSelector((state) => state.authSlice);
     return (
         <Route {...rest}
             render={({ location }) => {

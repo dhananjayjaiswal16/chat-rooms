@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
     if (!phone && !hash && !otp) {
         res.status(400).json({ "msg": "All fields must be provided" })
     }
+
     //otp validation
     const [hashOtp, expire] = hash.split('.');
     if (Date.now() > +expire) {
@@ -21,7 +22,7 @@ router.post('/', async (req, res) => {
 
     const data = `${phone}.${otp}.${expire}`;
 
-    const isOtpEqual = otpService.verifyOtp(hashOtp, data);
+    const isOtpEqual = await otpService.verifyOtp(hashOtp, data);
     if (!isOtpEqual) {
         res.status(400).json({ "msg": "Invalid OTP" });
     }
@@ -46,6 +47,6 @@ router.post('/', async (req, res) => {
         httpOnly: true,
     });
 
-    res.json({ accessToken });
+    res.json({ accessToken, user });
 })
 module.exports = router;

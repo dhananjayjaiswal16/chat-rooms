@@ -24,10 +24,11 @@ router.post('/', async (req, res) => {
 
     //send otp as SMS to phone no
     try {
-        await otpService.sendBySms(phone, otp);
+        // await otpService.sendBySms(phone, otp);
         res.json({
             hash: `${hash}.${expire}`,
-            phone: phone
+            phone: phone,
+            otp: otp
         })
     } catch (err) {
         console.log(err);

@@ -16,11 +16,15 @@ const Phone = ({ onClick }) => {
     const dispatch = useDispatch()
 
     const next = async () => {
+        try {
+            const { data } = await sendOtp({ phone: phoneNo });
+            console.log("res.data = " + JSON.stringify(data));
+            dispatch(setOtp({ phone: data.phone, hash: data.hash }))
+            onClick();
 
-        const { data } = await sendOtp({ phone: phoneNo });
-        console.log("res.data = " + JSON.stringify(data));
-        dispatch(setOtp({ phone: data.phone, hash: data.hash }))
-        onClick();
+        } catch (err) {
+            console.log(err.msg);
+        }
     }
     return (
         <Card emoji="☎️" title="Enter your phone number">

@@ -1,0 +1,18 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
+}
+p {
+  color: #c4c5c5;
+  margin: 0 auto;
+  font-size: 14px;
+  margin-top: 20px;
+  width: 30%;
+  text-align: center;
+}
+
+.nextButton {
+  margin-top: 25px;
+}

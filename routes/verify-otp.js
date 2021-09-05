@@ -39,14 +39,25 @@ router.post('/', async (req, res) => {
         res.status(500).json({ msg: "Server Error" });
     }
 
+
     //token
-    const { accessToken, refreshToken } = tokenService.generateTokens({ id: user._id, activated: false })
+    const { accessToken, refreshToken } = tokenService.generateTokens({
+        id: user._id,
+        activated: false
+    })
+
+    await tokenService.storeRefreshToken(refreshToken, user._id);
 
     res.cookie('refreshtoken', refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 30,
         httpOnly: true,
     });
 
-    res.json({ accessToken, user });
+    res.cookie('accesstoken', accessToken, {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+        httpOnly: true,
+    });
+
+    res.json({ user, auth: true });//{auth: true} is a flag 
 })
 module.exports = router;

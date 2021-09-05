@@ -6,7 +6,10 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors({ origin: ['http://localhost:3000'] }));
+app.use(cors({
+    credentials: true, //when we send tokens for authorisation 
+    origin: ['http://localhost:3000']
+}));
 
 connectDB();
 //express json

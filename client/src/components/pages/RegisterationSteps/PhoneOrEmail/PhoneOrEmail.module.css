@@ -32,11 +32,11 @@
 .nextButton {
   margin-top: 40px;
 }
-p {
+.phonepara {
   color: #c4c5c5;
   margin: 0 auto;
   font-size: 14px;
   margin-top: 20px;
-  width: 60%;
   text-align: center;
+  width: 70%;
 }

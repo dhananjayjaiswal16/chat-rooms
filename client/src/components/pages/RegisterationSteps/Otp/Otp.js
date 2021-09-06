@@ -16,12 +16,14 @@ const Otp = () => {
     const [otp, setOtp] = useState('');
     const dispatch = useDispatch();
     const { phone, hash } = useSelector((state) => state.authSlice.otp);
+
     const next = async () => {
         const { data } = await verifyOtp({ otp, phone, hash });
         console.log("Data = " + JSON.stringify(data));
         dispatch(setAuth(data));
         //onClick();
     }
+
     return (
         <div className={styles.cardContainer}>
             <Card emoji="🔒" title="Enter the code we just texted you">

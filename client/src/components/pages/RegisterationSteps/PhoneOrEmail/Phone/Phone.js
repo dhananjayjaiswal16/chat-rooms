@@ -32,7 +32,7 @@ const Phone = ({ onClick }) => {
             <div className={styles.nextButton}>
                 <Button onClick={next} btnText="Next"></Button>
             </div>
-            <p>
+            <p className="phonePara">
                 By entering your number, you’re agreeing to our Terms of Service and Privacy Policy. Thanks!
             </p>
         </Card>

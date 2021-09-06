@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./db');
+const cookieParser = require('cookie-parser');
 // const router = require('./routes');
 const cors = require('cors');
 
 const app = express();
+
+app.use(cookieParser());
 
 app.use(cors({
     credentials: true, //when we send tokens for authorisation 
@@ -13,10 +16,13 @@ app.use(cors({
 
 connectDB();
 //express json
-app.use(express.json({ extended: false }));
+app.use(express.json({ limit: '10mb' }));
+
 
 app.use('/api/send-otp', require('./routes/send-otp'));
 app.use('/api/verify-otp', require('./routes/verify-otp'));
+app.use('/api/activate', require('./routes/activate'));
+
 
 app.get('/', (req, res) => {
     res.send('Doge to the Moon');

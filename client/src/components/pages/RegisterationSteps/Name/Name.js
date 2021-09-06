@@ -22,7 +22,7 @@ const Name = ({ onClick }) => {
     }
     return (
         <div className={styles.cardContainer}>
-            <Card emoji="😎" title="Give in your full name">
+            <Card emoji="📛" title="Give in your full name">
                 <TextInput value={fullname} onChange={(e) => setFullname(e.target.value)} />
 
                 <p>

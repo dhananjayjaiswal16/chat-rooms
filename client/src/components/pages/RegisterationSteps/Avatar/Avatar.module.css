@@ -1,0 +1,39 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
+}
+.subheading {
+  width: 70%;
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+  color: #c4c5c5;
+}
+.avatarContainer {
+  width: 120px;
+  height: 120px;
+  border: 5px solid #0077ff;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatarImg {
+  object-fit: cover;
+  height: 90%;
+  width: 90%;
+}
+.avatarInput {
+  display: none;
+}
+.avatarLabel {
+  cursor: pointer;
+  display: inline-block;
+  margin: 25px 0;
+  color: #0077ff;
+  text-decoration: underline;
+}

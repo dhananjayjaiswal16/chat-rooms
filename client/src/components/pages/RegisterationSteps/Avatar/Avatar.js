@@ -26,7 +26,6 @@ const Avatar = ({ onClick }) => {
     const submit = async () => {
         try {
             const { data } = await activate({ name, avatar });
-            console.log("Data in avatar = " + JSON.stringify(data));
         } catch (err) {
             console.log(err);
         }

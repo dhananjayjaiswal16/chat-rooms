@@ -23,7 +23,6 @@ router.post('/',
         const buf = Buffer.from(avatar.replace(/data:image\/(jpeg|png|jpg);base64,/, ""), 'base64');
 
         const imgPath = `${Date.now()}_${Math.round(Math.random() * 1e9)}.png`;
-        console.log("Img path : " + imgPath);
         //imgpath will be like 412343353_3987898765.png
 
         try {
@@ -46,7 +45,7 @@ router.post('/',
 
             user.activated = true;
             user.name = name;
-            user.avatar = `/storage/${imgPath}`;
+            user.avatar = `${process.env.BASE_URL}/storage/${imgPath}`;
             user.save();
 
             res.json({ user, auth: true })

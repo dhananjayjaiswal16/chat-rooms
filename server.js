@@ -15,6 +15,9 @@ app.use(cors({
 }));
 
 connectDB();
+
+app.use('/storage', express.static('storage'));
+
 //express json
 app.use(express.json({ limit: '10mb' }));
 

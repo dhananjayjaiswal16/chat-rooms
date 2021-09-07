@@ -7,7 +7,7 @@ import Button from '../../../Skeleton/buttonLayout/Button'
 import { activate } from '../../../../http/httpRoutes'
 import { useSelector, useDispatch } from 'react-redux';
 import { setAvatar } from '../../../../store/activateSlice';
-
+import { setAuth } from '../../../../store/authSlice'
 
 
 const Avatar = ({ onClick }) => {
@@ -26,6 +26,9 @@ const Avatar = ({ onClick }) => {
     const submit = async () => {
         try {
             const { data } = await activate({ name, avatar });
+            if (data.auth) {
+                dispatch(setAuth(data));
+            }
         } catch (err) {
             console.log(err);
         }

@@ -18,7 +18,7 @@ const Phone = ({ onClick }) => {
     const next = async () => {
         try {
             const { data } = await sendOtp({ phone: phoneNo });
-            console.log("res.data = " + JSON.stringify(data));
+            console.log("res.data", data);
             dispatch(setOtp({ phone: data.phone, hash: data.hash }))
             onClick();
 

@@ -20,10 +20,10 @@ const PhoneOrEmail = ({ onClick }) => {
                 <div>
                     <div className={styles.buttonContainer}>
                         <button className={`${styles.iconButton} ${mode === 'phone' ? styles.current : ''}`} onClick={() => setMode('phone')}>
-                            <i class="fas fa-mobile-alt"></i>
+                            <i className="fas fa-mobile-alt"></i>
                         </button>
                         <button className={`${styles.iconButton} ${mode === 'email' ? styles.current : ''}`} onClick={() => setMode('email')}>
-                            <i class="far fa-envelope"></i>
+                            <i className="far fa-envelope"></i>
                         </button>
                     </div>
                     <CurrentMode onClick={onClick} />

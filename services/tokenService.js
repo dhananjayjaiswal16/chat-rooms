@@ -30,4 +30,17 @@ const verifyToken = async (token) => {
     return jwt.verify(token, accessTokenSecret);
 }
 
-module.exports = { generateTokens, storeRefreshToken, verifyToken };
+const verifyRefreshToken = async (token) => {
+    return jwt.verify(token, refreshTokenSecret);
+}
+
+const findRefreshToken = async (userId, refreshToken) => {
+    const token = await Refresh.findOne({ userId: userId, token: refreshToken })
+    return token;
+}
+
+const updateRefreshToken = async (userId, refreshToken) => {
+    await Refresh.updateOne({ userId: userId }, { token: refreshToken })
+}
+
+module.exports = { generateTokens, storeRefreshToken, verifyToken, verifyRefreshToken, findRefreshToken, updateRefreshToken };

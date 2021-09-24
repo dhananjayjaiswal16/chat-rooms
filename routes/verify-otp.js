@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     }
 
 
-    //token
+    //generate token
     const { accessToken, refreshToken } = tokenService.generateTokens({
         id: user._id,
         activated: false

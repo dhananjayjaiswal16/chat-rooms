@@ -25,6 +25,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use('/api/send-otp', require('./routes/send-otp'));
 app.use('/api/verify-otp', require('./routes/verify-otp'));
 app.use('/api/activate', require('./routes/activate'));
+app.use('/api/refresh', require('./routes/refresh'));
 
 
 app.get('/', (req, res) => {

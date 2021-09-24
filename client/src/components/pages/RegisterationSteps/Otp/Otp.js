@@ -19,7 +19,7 @@ const Otp = () => {
 
     const next = async () => {
         const { data } = await verifyOtp({ otp, phone, hash });
-        console.log("Data = " + JSON.stringify(data));
+        console.log("Data", data);
         dispatch(setAuth(data));
         //onClick();
     }

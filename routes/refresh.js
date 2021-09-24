@@ -4,20 +4,21 @@ const router = express.Router();
 const tokenService = require('../services/tokenService')
 const userService = require('../services/userService');
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
     const { refreshToken: cookieRefreshToken } = req.cookies;
-    let = userData;
+    let userData;
     try {
         userData = await tokenService.verifyRefreshToken(cookieRefreshToken);
+
     } catch (err) {
-        return res.status(401).json({ msg: 'Invalid Token' });
+        return res.status(401).json({ msg: 'Token verification server err' });
     }
 
     //Check if valid token is present
     try {
-        const token = await tokenService.findRefreshToken(userData._id, cookieRefreshToken);
+        const token = await tokenService.findRefreshToken(userData.id, cookieRefreshToken);
         if (!token) {
-            return res.status(401).json({ msg: 'Invalid Token' })
+            return res.status(401).json({ msg: 'DB error' })
         }
     } catch (err) {
         return res.status(500).json({ msg: 'Database Error' })
@@ -25,8 +26,9 @@ router.post('/', async (req, res) => {
 
     //Check if user is present
     let user;
+
     try {
-        user = await userService.findUser({ _id: userId })
+        user = await userService.findUser({ id: userData.id })
         if (!user) {
             return res.status(404).json({ msg: 'So such user found' })
         }
@@ -34,11 +36,11 @@ router.post('/', async (req, res) => {
         return res.status(500).json({ msg: 'Server error while looking for user' })
     }
 
-    const { accessToken, refreshToken } = tokenService.generateTokens({ _id: userData._id });
+    const { accessToken, refreshToken } = tokenService.generateTokens({ id: userData.id });
 
     //Update token in db
     try {
-        await tokenService.updateRefreshToken(userId, refreshToken);
+        await tokenService.updateRefreshToken(userData.id, refreshToken);
     } catch (err) {
         return res.status(500).json({ msg: 'Server error' })
     }
@@ -51,8 +53,8 @@ router.post('/', async (req, res) => {
         maxAge: 1000 * 60 * 60 * 24 * 30,
         httpOnly: true,
     });
-
-    res.json({ user, auth: true });
+    console.log("userData in refresh", userData);
+    res.json({ user: userData, auth: true });
 })
 
 module.exports = router;

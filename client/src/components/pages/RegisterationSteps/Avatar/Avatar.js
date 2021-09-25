@@ -34,7 +34,7 @@ const Avatar = ({ onClick }) => {
     }
     const submit = async () => {
         if (!name || !avatar) {
-            dispatch(setAlertMsg({ msg: 'Phone No. field is required', id: id }))
+            dispatch(setAlertMsg({ msg: 'Profile Picture is required', id: id }))
 
 
             setTimeout(() => (

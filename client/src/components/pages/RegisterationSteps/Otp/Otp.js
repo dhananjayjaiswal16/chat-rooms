@@ -18,6 +18,8 @@ const Otp = () => {
     const { phone, hash } = useSelector((state) => state.authSlice.otp);
 
     const next = async () => {
+
+        if (!otp || !phone || !hash) return;
         const { data } = await verifyOtp({ otp, phone, hash });
         console.log("Data", data);
         dispatch(setAuth(data));

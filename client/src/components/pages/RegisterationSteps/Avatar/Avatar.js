@@ -27,6 +27,7 @@ const Avatar = ({ onClick }) => {
         }
     }
     const submit = async () => {
+        if (!name || !avatar) return;
         setLoading(true);
         try {
             const { data } = await activate({ name, avatar });

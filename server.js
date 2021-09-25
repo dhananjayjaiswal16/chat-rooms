@@ -26,6 +26,7 @@ app.use('/api/send-otp', require('./routes/send-otp'));
 app.use('/api/verify-otp', require('./routes/verify-otp'));
 app.use('/api/activate', require('./routes/activate'));
 app.use('/api/refresh', require('./routes/refresh'));
+app.use('/api/logout', require('./routes/logout'));
 
 
 app.get('/', (req, res) => {

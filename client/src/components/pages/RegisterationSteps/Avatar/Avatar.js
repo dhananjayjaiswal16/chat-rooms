@@ -9,10 +9,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAvatar } from '../../../../store/activateSlice';
 import { setAuth } from '../../../../store/authSlice'
 
+import Loader from '../../../Skeleton/Loader/Loader'
 
 const Avatar = ({ onClick }) => {
     const { name, avatar } = useSelector(state => state.activateSlice);
     const [image, setImage] = useState('/react-logo.png');
+    const [loading, setLoading] = useState(false);
+
     const dispatch = useDispatch();
     const setSelectedImage = (e) => {
         const file = e.target.files[0];
@@ -24,16 +27,21 @@ const Avatar = ({ onClick }) => {
         }
     }
     const submit = async () => {
+        setLoading(true);
         try {
             const { data } = await activate({ name, avatar });
             if (data.auth) {
                 dispatch(setAuth(data));
             }
+            setLoading(false);
         } catch (err) {
             console.log(err);
+            setLoading(false);
         }
     }
-
+    if (loading) {
+        return <Loader msg='Authentication in progress' />
+    }
     return (
         <div className={styles.cardContainer}>
             <Card emoji="😎" title={`Hey, ${name}`}>

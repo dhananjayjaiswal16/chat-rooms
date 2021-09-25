@@ -33,10 +33,10 @@ router.post('/',
         } catch (err) {
             res.status(500).json({ message: 'Could not process the image' });
         }
-        console.log("user in activate", req.user);
+        //console.log("user in activate", req.user);
         const userId = req.user.id;
 
-        console.log("userId in activate", userId);
+        //console.log("userId in activate", userId);
 
 
         try {

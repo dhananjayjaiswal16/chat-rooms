@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
-
+import { useState } from 'react';
 import GuestRoute from './RouteProtection/GuestRoute'
 import SemiProtectedRoute from './RouteProtection/SemiProtectedRoute'
 import ProtectedRoute from './RouteProtection/ProtectedRoute'
+
+import { usePageRefresh } from './hooks/usePageRefresh';
 
 import Home from './components/pages/Home/Home';
 import Navigation from './components/Navigation/Navigation'
 import Auth from './components/pages/Auth/Auth';
 import Activate from './components/pages/Activate/Activate';
 import Rooms from './components/pages/Rooms/Rooms';
+
+import Loader from './components/Skeleton/Loader/Loader'
 
 // import {useSelector} from 'react-redux';
 // import {} from './store/authSlice';
@@ -21,10 +25,14 @@ import Rooms from './components/pages/Rooms/Rooms';
 // }
 
 const App = () => {
-  return (
+  // const [loading, setLoading] = useState(false);
+  const { loading } = usePageRefresh();
+  return loading ? (
+    <Loader msg='Activation in Progress' />
+  ) : (
     <Router>
       <Navigation />
-      <Switch>
+      < Switch >
 
         {/* Guest Routes (Home and Auth) */}
         <GuestRoute exact path='/' ><Home /></GuestRoute>
@@ -43,9 +51,10 @@ const App = () => {
         </ProtectedRoute>
 
 
-      </Switch>
-    </Router>
+      </Switch >
+    </Router >
   );
+
 }
 
 export default App;

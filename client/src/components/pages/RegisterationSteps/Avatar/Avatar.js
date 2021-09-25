@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import styles from './Avatar.module.css'
+import { v4 as uuidv4 } from 'uuid';
 
 import Card from '../../../Skeleton/cardLayout/Card'
 import Button from '../../../Skeleton/buttonLayout/Button'
+
+import { setAlertMsg, removeAlertMsg } from '../../../../store/alertSlice';
+
+import Alert from '../../Alert/Alert'
 
 import { activate } from '../../../../http/httpRoutes'
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +22,7 @@ const Avatar = ({ onClick }) => {
     const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
+    const id = uuidv4();
     const setSelectedImage = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -27,7 +33,16 @@ const Avatar = ({ onClick }) => {
         }
     }
     const submit = async () => {
-        if (!name || !avatar) return;
+        if (!name || !avatar) {
+            dispatch(setAlertMsg({ msg: 'Phone No. field is required', id: id }))
+
+
+            setTimeout(() => (
+                dispatch(removeAlertMsg(id))
+            ), 3500);
+
+            return;
+        }
         setLoading(true);
         try {
             const { data } = await activate({ name, avatar });
@@ -46,7 +61,7 @@ const Avatar = ({ onClick }) => {
     return (
         <div className={styles.cardContainer}>
             <Card emoji="😎" title={`Hey, ${name}`}>
-
+                <Alert />
                 <p className={styles.subheading}>
                     Show the world how you look like
                 </p>

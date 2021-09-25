@@ -26,33 +26,34 @@ import Loader from './components/Skeleton/Loader/Loader'
 
 const App = () => {
   // const [loading, setLoading] = useState(false);
+
   const { loading } = usePageRefresh();
   return loading ? (
     <Loader msg='Activation in Progress' />
   ) : (
     <Router>
       <Navigation />
-      < Switch >
+      <Switch>
 
-        {/* Guest Routes (Home and Auth) */}
+        {/* (Home and Auth) */}
         <GuestRoute exact path='/' ><Home /></GuestRoute>
         <GuestRoute path='/auth'>
           <Auth />
         </GuestRoute>
 
-        {/* Semi Protected Routes (Name and profile pic) */}
+        {/* S(Name and profile pic) */}
         <SemiProtectedRoute path='/activate' >
           <Activate />
         </SemiProtectedRoute>
 
-        {/* Protected routes (Chat Rooms) */}
+        {/* (Chat Rooms) */}
         <ProtectedRoute path='/rooms' >
           <Rooms />
         </ProtectedRoute>
 
 
-      </Switch >
-    </Router >
+      </Switch>
+    </Router>
   );
 
 }

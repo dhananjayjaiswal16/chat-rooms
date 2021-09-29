@@ -1,0 +1,40 @@
+.roomCard {
+  background: #1d1d1d;
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.speakers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px 30px;
+  position: relative;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #20bd5f;
+  background: #1d1d1d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.avatar:last-child {
+  top: 20px;
+  left: 20px;
+}
+.names span {
+  display: inline-block;
+  padding-bottom: 3px;
+  margin-right: 5px;
+}
+.memberCount {
+  text-align: right;
+}
+.memberCount span {
+  font-weight: bold;
+  margin-right: 5px;
+}

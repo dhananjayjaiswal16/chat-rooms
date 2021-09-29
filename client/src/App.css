@@ -29,6 +29,7 @@ ul {
 button {
   border: none;
   outline: none;
+  font-weight: bold;
 }
 img {
   max-width: 100%;

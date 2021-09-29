@@ -1,0 +1,56 @@
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.left {
+  display: flex;
+  align-items: center;
+}
+.heading {
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+}
+.heading::after {
+  background: #0077ff;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  bottom: -3px;
+  border-radius: 2px;
+  left: 0;
+  content: "";
+}
+.search {
+  background: #262626;
+  margin-left: 19px;
+  padding: 0px 10px 0px 15px;
+  border-radius: 20px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+}
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: #fff;
+  padding: 7px 10px;
+  margin-left: 5px;
+}
+.startRoomBtn {
+  background: #20bd5f;
+  border-radius: 20px;
+  padding: 7px 25px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.startRoomBtn:hover {
+  background: #117539;
+}
+.roomBtnText {
+  margin-left: 10px;
+}

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Avatar.module.css'
 import { v4 as uuidv4 } from 'uuid';
 
 import Card from '../../../Skeleton/cardLayout/Card'
 import Button from '../../../Skeleton/buttonLayout/Button'
+import Loader from '../../../Skeleton/Loader/Loader'
 
 import { setAlertMsg, removeAlertMsg } from '../../../../store/alertSlice';
 
@@ -14,12 +15,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAvatar } from '../../../../store/activateSlice';
 import { setAuth } from '../../../../store/authSlice'
 
-import Loader from '../../../Skeleton/Loader/Loader'
+
 
 const Avatar = ({ onClick }) => {
+
     const { name, avatar } = useSelector(state => state.activateSlice);
     const [image, setImage] = useState('/react-logo.png');
     const [loading, setLoading] = useState(false);
+    const [unMounted, setUnMounted] = useState(false);
 
     const dispatch = useDispatch();
     const id = uuidv4();
@@ -47,7 +50,9 @@ const Avatar = ({ onClick }) => {
         try {
             const { data } = await activate({ name, avatar });
             if (data.auth) {
-                dispatch(setAuth(data));
+                if (!unMounted) {
+                    dispatch(setAuth(data));
+                }
             }
             setLoading(false);
         } catch (err) {
@@ -55,6 +60,15 @@ const Avatar = ({ onClick }) => {
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        //Runs when component unmounts
+        return () => {
+            setUnMounted(true);
+        }
+    }, []);
+
+
     if (loading) {
         return <Loader msg='Authentication in progress' />
     }

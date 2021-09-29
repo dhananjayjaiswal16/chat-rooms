@@ -44,7 +44,7 @@ const Name = ({ onClick }) => {
                     Chat House :)
                 </p>
 
-                <div class={styles.nextButton}>
+                <div className={styles.nextButton}>
                     <Button onClick={next} btnText="Next"></Button>
                 </div>
 

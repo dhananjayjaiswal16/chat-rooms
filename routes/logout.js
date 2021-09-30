@@ -5,6 +5,9 @@ const auth = require('../middleware/auth')
 
 const tokenService = require('../services/tokenService')
 
+//route         POST api/logout
+//description   Logout user
+//access        Public
 router.post('/', auth, async (req, res) => {
     const { refreshToken } = req.cookies;
     await tokenService.removeToken(refreshToken);

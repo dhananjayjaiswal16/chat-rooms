@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./db');
 const cookieParser = require('cookie-parser');
-// const router = require('./routes');
 const cors = require('cors');
 
 const app = express();
@@ -27,6 +26,7 @@ app.use('/api/verify-otp', require('./routes/verify-otp'));
 app.use('/api/activate', require('./routes/activate'));
 app.use('/api/refresh', require('./routes/refresh'));
 app.use('/api/logout', require('./routes/logout'));
+app.use('/api/rooms', require('./routes/rooms'));
 
 
 app.get('/', (req, res) => {

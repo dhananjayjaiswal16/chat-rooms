@@ -2,6 +2,7 @@ import React from 'react'
 import Rooms from '../pages/Rooms/Rooms';
 import styles from './Room.module.css'
 const Room = ({ room }) => {
+    if (!room) return;
     return (
         <>
             <div className={styles.roomCard}>
@@ -12,22 +13,22 @@ const Room = ({ room }) => {
                     <div className={styles.avatars}>
                         {
                             room.speakers.map(speaker => (
-                                <img className={styles.avatar} src={speaker.avatar} alt="speaker-img" />
+                                <img key={speaker.id} className={styles.avatar} src={speaker.avatar} alt="speaker-img" />
                             ))
                         }
                     </div>
                     <div className={styles.names}>
                         {
                             room.speakers.map(speaker => (
-                                <div>
-                                    <span>{speaker.name}</span> <i class="fas fa-comment-dots"></i>
+                                <div key={speaker.id}>
+                                    <span>{speaker.name}</span> <i className="fas fa-comment-dots"></i>
                                 </div>
                             ))
                         }
                     </div>
                 </div>
                 <div className={styles.memberCount}>
-                    <span>{room.totalPeople}</span><i class="fas fa-user"></i>
+                    <span>{room.totalPeople}</span><i className="fas fa-user"></i>
                 </div>
             </div>
         </>

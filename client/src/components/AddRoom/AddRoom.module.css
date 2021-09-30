@@ -1,0 +1,92 @@
+.entirePage {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addRoomContainer {
+  width: 50%;
+  max-width: 500px;
+  background: #1d1d1d;
+  border-radius: 25px;
+  position: relative;
+}
+.crossBtn {
+  background: #1d1d1d;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.crossBtn i {
+  color: #fff;
+  font-size: 20px;
+}
+.header {
+  padding: 20px;
+  border-bottom: 2px solid #262626;
+}
+.headerText {
+  margin-bottom: 7px;
+}
+.roomTypesHeaderText {
+  margin: 15px 0px 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.roomTypeContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.roomType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  padding: 35px;
+  border-radius: 12px;
+}
+.roomType.active {
+  background: #262626;
+}
+.roomType:first-child {
+  padding: 25px;
+}
+.image2and3 {
+  margin-bottom: 10px;
+}
+/* .roomType img {
+  width: 100px;
+  height: 100px;
+} */
+.footer {
+  text-align: center;
+  padding: 30px;
+}
+.footerText {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.startRoomBtn {
+  background: #20bd5f;
+  border-radius: 20px;
+  padding: 7px 25px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  font-size: 15px;
+}
+.startRoomBtn i {
+  margin-right: 5px;
+}
+.startRoomBtn:hover {
+  background: #117539;
+}

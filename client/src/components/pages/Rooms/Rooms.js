@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Rooms.module.css'
 import Room from '../../Room/Room'
 
+import AddRoom from '../../AddRoom/AddRoom'
 
 const rooms = [
     {
@@ -76,35 +77,39 @@ const rooms = [
 
 
 const Rooms = () => {
+    const [showAddRoom, setShowAddRoom] = useState(false);
+
 
     return (
-        <div>
-            <>
-                <div className="container">
-                    <div className={styles.topBar}>
-                        <div className={styles.left}>
-                            <span className={styles.heading}>Chat Rooms</span>
-                            <div className={styles.search}>
-                                <i class="fas fa-search"></i>
-                                <input className={styles.searchInput} type="text" />
-                            </div>
-                        </div>
-                        <div className={styles.right}>
-                            <button className={styles.startRoomBtn}>
-                                <i class="fas fa-microphone"></i>
-                                <span className={styles.roomBtnText}>Start a room</span>
-                            </button>
+
+
+        <>
+            <div className="container">
+                <div className={styles.topBar}>
+                    <div className={styles.left}>
+                        <span className={styles.heading}>Chat Rooms</span>
+                        <div className={styles.search}>
+                            <i className="fas fa-search"></i>
+                            <input className={styles.searchInput} type="text" />
                         </div>
                     </div>
-                    <div className={styles.roomsList}>
-                        {
-                            rooms.map((room) => <Room key={room.id} room={room} />)
-                        }
+                    <div className={styles.right}>
+                        <button onClick={() => setShowAddRoom(true)} className={styles.startRoomBtn}>
+                            <i className="fas fa-microphone"></i>
+                            <span className={styles.roomBtnText}>Start a room</span>
+                        </button>
                     </div>
                 </div>
-            </>
+                <div className={styles.roomsList}>
+                    {
+                        rooms.map((room) => room && <Room key={room.id} room={room} />)
+                    }
+                </div>
+            </div>
+            {showAddRoom && <AddRoom onClose={() => setShowAddRoom(false)} />}
+        </>
 
-        </div>
+
     )
 }
 

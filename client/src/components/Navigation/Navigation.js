@@ -39,9 +39,9 @@ const Navigation = () => {
             </Link>
             {isAuth && <div className={styles.right}>
                 <h3>{user && user.name}</h3>
-                <Link to='/'>
-                    <img className={styles.userAvatar} src={user && user.avatar} width='40' height='40' alt={`${user && user.name}-img`} />
-                </Link>
+                {user.avatar && <Link to='/'>
+                    <img className={styles.userAvatar} src={user.avatar} width='40' height='40' alt={`${user && user.name}-img`} />
+                </Link>}
                 <button className={styles.logoutBtn} onClick={logoutUser}><i className={`fas fa-sign-out-alt ${styles.logoutIcon}`}></i></button>
             </div>}
 

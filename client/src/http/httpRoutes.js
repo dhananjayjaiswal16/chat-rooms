@@ -13,6 +13,7 @@ export const verifyOtp = (data) => api.post('/api/verify-otp', data);
 export const activate = (data) => api.post('/api/activate', data);
 export const logout = () => api.post('/api/logout');
 export const createRoom = (data) => api.post('/api/rooms', data);
+export const getRooms = () => api.get('/api/rooms');
 
 
 //Axios Interceptors
@@ -23,7 +24,7 @@ api.interceptors.response.use(
     async (error) => {
         const originalReq = error.config;
 
-        if (error.response.status === 401 && originalReq && !originalReq.isRetry) {
+        if (error?.response?.status === 401 && originalReq && !originalReq.isRetry) {
             originalReq.isRetry = true;
 
             try {

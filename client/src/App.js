@@ -12,6 +12,7 @@ import Navigation from './components/Navigation/Navigation'
 import Auth from './components/pages/Auth/Auth';
 import Activate from './components/pages/Activate/Activate';
 import Rooms from './components/pages/Rooms/Rooms';
+import Room from './components/pages/Room/Room'
 
 import Loader from './components/Skeleton/Loader/Loader'
 
@@ -36,7 +37,9 @@ const App = () => {
       <Switch>
 
         {/* (Home and Auth) */}
-        <GuestRoute exact path='/' ><Home /></GuestRoute>
+        <GuestRoute exact path='/' >
+          <Home />
+        </GuestRoute>
         <GuestRoute path='/auth'>
           <Auth />
         </GuestRoute>
@@ -51,6 +54,10 @@ const App = () => {
           <Rooms />
         </ProtectedRoute>
 
+        {/* Individual Room */}
+        <ProtectedRoute path='/room/:id' >
+          <Room />
+        </ProtectedRoute>
 
       </Switch>
     </Router>

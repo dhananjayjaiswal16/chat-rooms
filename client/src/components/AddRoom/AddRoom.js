@@ -9,9 +9,13 @@ import { setAlertMsg, removeAlertMsg } from '../../store/alertSlice'
 import Alert from '../pages/Alert/Alert'
 import TextInput from '../Skeleton/textInputLayout/TextInput'
 
+import { useHistory } from 'react-router-dom'
+
 const AddRoom = ({ onClose }) => {
+    const history = useHistory();
     const [selectedType, setSelectedType] = useState('open');
     const [topic, setTopic] = useState('');
+
     const id = uuidv4();
     const dispatch = useDispatch();
 
@@ -26,6 +30,7 @@ const AddRoom = ({ onClose }) => {
         }
         try {
             const { data } = await startRoom({ selectedType, topic });
+            history.push(`/room/${data._id}`);
             console.log("Data in Add room", data);
         } catch (err) {
 

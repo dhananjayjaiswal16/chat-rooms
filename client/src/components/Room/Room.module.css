@@ -11,6 +11,12 @@
   margin: 20px 0px 30px;
   position: relative;
 }
+.forSingleSpeaker {
+  padding: 0 15px;
+}
+.forSingleSpeaker .avatars img {
+  position: initial;
+}
 .avatar {
   width: 40px;
   height: 40px;

@@ -3,24 +3,24 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const GuestRoute = ({ children, ...rest }) => {
-    const { isAuth } = useSelector((state) => state.authSlice);
-    return (
-        <Route {...rest}
-            render={({ location }) => {
-                return (
-                    isAuth ? (
-                        <Redirect to={{
-                            pathname: '/rooms',
-                            state: { from: location }
-                        }}
-                        />) : (
-                        children
-                    )
-                )
-            }}>
+  const { isAuth } = useSelector((state) => state.authSlice);
+  return (
+    <Route {...rest}
+      render={({ location }) => {
+        return (
+          isAuth ? (
+            <Redirect to={{
+              pathname: '/rooms',
+              state: { from: location }
+            }}
+            />) : (
+            children
+          )
+        )
+      }}>
 
-        </Route>
-    );
+    </Route>
+  );
 }
 
 export default GuestRoute;

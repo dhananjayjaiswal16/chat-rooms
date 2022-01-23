@@ -10,13 +10,12 @@ const roomService = require('../services/roomService');
 //description   Get all rooms 
 //access        Public
 router.get('/', auth, async (req, res) => {
-    try {
-        const rooms = await roomService.getAllRooms(['open']);
-        console.log("rooms in get /rooms", rooms);
-        return res.json(rooms);
-    } catch (err) {
-        res.status(500).json({ msg: 'Error while fetching room data' })
-    }
+  try {
+    const rooms = await roomService.getAllRooms(['open']);
+    return res.json(rooms);
+  } catch (err) {
+    res.status(500).json({ msg: 'Error while fetching room data' })
+  }
 });
 
 
@@ -24,15 +23,15 @@ router.get('/', auth, async (req, res) => {
 //description   Send rooms
 //access        Public
 router.post('/', auth, async (req, res) => {
-    const { topic, selectedType } = req.body;
+  const { topic, selectedType } = req.body;
 
-    if (!topic || !selectedType) {
-        return res.status(400).json({ msg: 'All fields are required' });
-    }
+  if (!topic || !selectedType) {
+    return res.status(400).json({ msg: 'All fields are required' });
+  }
 
-    const room = await roomService.create({ topic, selectedType, ownerId: req.user.id });
+  const room = await roomService.create({ topic, selectedType, ownerId: req.user.id });
 
-    res.json(room);
+  res.json(room);
 })
 
 

@@ -9,11 +9,11 @@ export const alertSlice = createSlice({
 
   reducers: {
     setAlertMsg: (state, action) => {
-      console.log("action.payload in set", action.payload);
+      // console.log("action.payload in set", action.payload);
       state.alerts.push(action.payload);
     },
     removeAlertMsg: (state, action) => {
-      console.log("action.payload in remove", action.payload);
+      // console.log("action.payload in remove", action.payload);
       state.alerts = state.alerts.filter(alert =>
         alert.id !== action.payload
       );

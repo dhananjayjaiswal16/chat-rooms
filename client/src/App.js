@@ -16,15 +16,6 @@ import Room from './components/pages/Room/Room'
 
 import Loader from './components/Skeleton/Loader/Loader'
 
-// import {useSelector} from 'react-redux';
-// import {} from './store/authSlice';
-
-
-// let isAuth = false;
-// let user = {
-//   activated: false
-// }
-
 const App = () => {
   // const [loading, setLoading] = useState(false);
 

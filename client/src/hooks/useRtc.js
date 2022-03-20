@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStateWithCallback } from './useStateWithCallback';
-export const useRtc = () => {
+export const useRtc = (roomId, user) => {
   //reason why i created this custom hook was because I wanted a callback function to be triggered after client state has been updated
   const [clients, setClients] = useStateWithCallback([
     {

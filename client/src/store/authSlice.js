@@ -16,7 +16,7 @@ export const authSlice = createSlice({
     setAuth: (state, action) => {
       const { user } = action.payload;
       state.user = user;
-      console.log("user in Reducer", user);
+      //console.log("user in Reducer", user);
       if (!user) {
         state.isAuth = false
       } else {

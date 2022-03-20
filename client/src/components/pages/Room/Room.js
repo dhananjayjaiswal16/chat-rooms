@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import { useRtc } from '../../../hooks/useRtc';
 import styles from './Room.module.css';
-
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const Room = () => {
-  const { clients } = useRtc();
+  const { id: roomId } = useParams();
+  const user = useSelector(state => state?.authSlice?.user);
+  const { clients } = useRtc(roomId, user);
   return (
     <div>
       <h1>All connected Users</h1>
       {clients?.map(client => (
         <div key={client.id}>
-          <audio controls autoplay></audio>
+          <audio controls autoPlay></audio>
           <h4>{client?.name}</h4>
         </div>
       ))}

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children, ...rest }) => {
   const { isAuth, user } = useSelector((state) => state.authSlice);
-  console.log("user in PRot route", user);
+  //console.log("user in PRot route", user);
   return (
     <Route {...rest}
       render={({ location }) => {

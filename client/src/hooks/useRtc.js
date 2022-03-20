@@ -17,5 +17,9 @@ export const useRtc = () => {
     }
   ]);
 
+  setClients((prev) => { }, (state) => {
+    //stuff to be done after state Changes --> This was the main motive behind creating this custom hook
+  })
+
   return { clients };
 }

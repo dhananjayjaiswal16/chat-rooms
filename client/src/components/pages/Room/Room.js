@@ -6,13 +6,18 @@ import { useSelector } from 'react-redux'
 const Room = () => {
   const { id: roomId } = useParams();
   const user = useSelector(state => state?.authSlice?.user);
-  const { clients } = useRtc(roomId, user);
+  const { clients, provideRef } = useRtc(roomId, user);
   return (
     <div>
       <h1>All connected Users</h1>
       {clients?.map(client => (
         <div key={client.id}>
-          <audio controls autoPlay></audio>
+          <audio
+            ref={(instance) => provideRef(instance, client.id)}
+            controls
+            autoPlay
+          >
+          </audio>
           <h4>{client?.name}</h4>
         </div>
       ))}

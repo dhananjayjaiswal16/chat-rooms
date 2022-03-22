@@ -89,7 +89,10 @@ export const useRtc = (roomId, user) => {
         })
       }
 
-
+      //Add local track to remote connection
+      localMediaStream.current.getTracks().forEach(track => {
+        connections.current[peerId].addTrack(track, localMediaStream.current)
+      })
     }
 
     socket.current.on(ACTIONS.ADD_PEER, handleNewPeer)

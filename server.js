@@ -1,16 +1,23 @@
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const connectDB = require('./db');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST']
+  }
+})
 
 app.use(cookieParser());
 
 app.use(cors({
-    credentials: true, //when we send tokens for authorisation 
-    origin: ['http://localhost:3000']
+  credentials: true, //when we send tokens for authorisation 
+  origin: ['http://localhost:3000']
 }));
 
 connectDB();
@@ -30,8 +37,8 @@ app.use('/api/rooms', require('./routes/rooms'));
 
 
 app.get('/', (req, res) => {
-    res.send('Doge to the Moon');
+  res.send('Doge to the Moon');
 })
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));

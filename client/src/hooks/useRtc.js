@@ -93,9 +93,25 @@ export const useRtc = (roomId, user) => {
       localMediaStream.current.getTracks().forEach(track => {
         connections.current[peerId].addTrack(track, localMediaStream.current)
       })
+
+      //createOffer
+      if (createOffer) {
+        const offer = await connections.current[peerId].createOffer();
+        //connections.current[peerId].setLocalDescription(offer);
+
+        //send offer to another client
+        socket.current.emit(ACTIONS.RELAY_SDP, {
+          peerId,
+          sessionDescription: offer
+        });
+      }
     }
 
-    socket.current.on(ACTIONS.ADD_PEER, handleNewPeer)
+    socket.current.on(ACTIONS.ADD_PEER, handleNewPeer);
+
+    return () => {
+      socket.current.off(ACTIONS.ADD_PEER)
+    }
   }, [])
 
   return { clients, provideRef };

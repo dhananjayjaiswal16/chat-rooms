@@ -51,9 +51,17 @@ io.on('connection', (socket) => {
     const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []); // io.sockets.adapter.rooms gives us Map hence we I used Array.from() in order to convert it to an array
 
     clients.forEach(clientId => { //clientId is basically socket id of user
-      io.to(clientId).emit(ACTIONS.ADD_PEER, {});
+      io.to(clientId).emit(ACTIONS.ADD_PEER, {
+        peerId: socket.id,
+        createOffer: false,
+        user
+      });
     })
-    socket.emit(ACTIONS.ADD_PEER, {});
+    socket.emit(ACTIONS.ADD_PEER, {
+      peerId: clientId,
+      createOffer: true,
+      user: socketUserMap[clientId]
+    });
     socket.join(roomId);
   })
 

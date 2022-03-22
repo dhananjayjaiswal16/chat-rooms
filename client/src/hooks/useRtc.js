@@ -47,5 +47,18 @@ export const useRtc = (roomId, user) => {
     })
   }, [])
 
+
+  useEffect(() => {
+    const handleNewPeer = async ({ peerId, createOffer, user: remoteUser }) => {
+      if (peerId in connections.current) {
+        return console.warn(`You are already connected with ${peerId} (${user.name})`);
+      }
+
+
+    }
+
+    socket.current.on(ACTIONS.ADD_PEER, handleNewPeer)
+  }, [])
+
   return { clients, provideRef };
 }

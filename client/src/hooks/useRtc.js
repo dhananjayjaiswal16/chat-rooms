@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { useStateWithCallback } from './useStateWithCallback';
 import socketInit from '../socket/index';
+import { ACTIONS } from '../actions';
 
 export const useRtc = (roomId, user) => {
   //reason why i created this custom hook was because I wanted a callback function to be triggered after client state has been updated
@@ -41,7 +42,7 @@ export const useRtc = (roomId, user) => {
         }
 
         //socket io emit
-        socket.current.emit('join', {});
+        socket.current.emit(ACTIONS.JOIN, { roomId, user });
       })
     })
   }, [])

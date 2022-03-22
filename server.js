@@ -12,7 +12,7 @@ const io = require('socket.io')(server, {
     methods: ['GET', 'POST']
   }
 })
-
+const ACTIONS = require('./actions');
 app.use(cookieParser());
 
 app.use(cors({
@@ -40,8 +40,23 @@ app.get('/', (req, res) => {
   res.send('Doge to the Moon');
 })
 
+// socketId belongs to which user (to store that)
+const socketUserMap = {}
+
 io.on('connection', (socket) => {
   console.log('new connection with socket id : ', socket.id);
+
+  socket.on(ACTIONS.JOIN, ({ roomId, user }) => {
+    socketUserMap[socket.id] = user;
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []); // io.sockets.adapter.rooms gives us Map hence we I used Array.from() in order to convert it to an array
+
+    clients.forEach(clientId => { //clientId is basically socket id of user
+      io.to(clientId).emit(ACTIONS.ADD_PEER, {});
+    })
+    socket.emit(ACTIONS.ADD_PEER, {});
+    socket.join(roomId);
+  })
+
 })
 
 const PORT = process.env.PORT || 5000;

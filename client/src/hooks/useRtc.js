@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
-import { dummyUsers } from './hookHepler';
 import { useStateWithCallback } from './useStateWithCallback';
+import socketInit from '../socket/index';
+
 export const useRtc = (roomId, user) => {
   //reason why i created this custom hook was because I wanted a callback function to be triggered after client state has been updated
   const [clients, setClients] = useStateWithCallback([]);
@@ -8,6 +9,11 @@ export const useRtc = (roomId, user) => {
   const audioElements = useRef({}); //for storing userId and fetch instance of audioElement for that userId
   const connections = useRef({}); // stroing peerConnections using socketId
   const localMediaStream = useRef(null); //local audio, mic etc data
+
+  const socket = useRef(null);
+  useEffect(() => {
+    socket.current = socketInit()
+  }, [])
 
   const provideRef = (instance, userId) => {
     audioElements.current[userId] = instance;
@@ -33,6 +39,9 @@ export const useRtc = (roomId, user) => {
           localElement.volume = 0; //if volume !=0 we will hear our own voice
           localElement.srcObject = localMediaStream.current;
         }
+
+        //socket io emit
+        socket.current.emit('join', {});
       })
     })
   }, [])

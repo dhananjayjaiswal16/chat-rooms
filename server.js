@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-  console.log('new connection', socket);
+  console.log('new connection with socket id : ', socket.id);
 })
 
 const PORT = process.env.PORT || 5000;

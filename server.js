@@ -40,5 +40,9 @@ app.get('/', (req, res) => {
   res.send('Doge to the Moon');
 })
 
+io.on('connection', (socket) => {
+  console.log('new connection', socket);
+})
+
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
